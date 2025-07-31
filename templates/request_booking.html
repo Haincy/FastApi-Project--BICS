@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Hall Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/static/css/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6, #60a5fa);
+            min-height: 100vh;
+            color: #1f2937;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header-card {
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 1rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .header-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #1e40af;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: #dbeafe;
+            color: #1e3a8a;
+        }
+
+        .logout-btn {
+            background: linear-gradient(45deg, #f43f5e, #e11d48);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(244, 63, 94, 0.3);
+            background: linear-gradient(45deg, #e11d48, #be123c);
+        }
+
+        .form-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-top: 2rem;
+            position: relative;
+        }
+
+        .form-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+            border-radius: 1rem 0 0 1rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-weight: 500;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .form-group input[readonly] {
+            background: #f3f4f6;
+            cursor: not-allowed;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #3b82f6, #2563eb);
+            color: white;
+            font-weight: 600;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+            background: linear-gradient(45deg, #2563eb, #1e40af);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header-card,
+            .form-card {
+                padding: 1.5rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .nav-links a {
+                font-size: 0.875rem;
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-card">
+            <h1 class="text-3xl font-bold text-gray-800 mb-3">Request Hall Booking</h1>
+            <p class="text-gray-600 mb-4">Logged in as: {{ user }}</p>
+            <div class="nav-links">
+                <a href="/user/my-bookings">View My Bookings</a>
+                <a href="/user/feedback">Give Feedback</a>
+                <a href="/user/profile">Profile</a>
+                <a href="/login" class="logout-btn">Logout</a>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Submit Booking Request</h2>
+            <form action="/user/request-booking" method="post" class="mb-6">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="user">Student Name</label>
+                        <input type="text" name="user" id="user" value="{{ user }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_id">Student ID</label>
+                        <input type="text" name="user_id" id="user_id" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hall">Hall Name</label>
+                        <select name="hall" id="hall" required>
+                            <option value="Seminar Hall">Seminar Hall</option>
+                            <option value="Main Hall">Main Hall</option>
+                            <option value="Conference Room">Conference Room</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="time">Time</label>
+                        <input type="time" name="time" id="time" required>
+                    </div>
+                </div>
+                <button type="submit" class="submit-btn mt-6">Submit Request</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

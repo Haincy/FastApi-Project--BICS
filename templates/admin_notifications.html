@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1614850715649-1d0106293bd1?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: rgba(0, 0, 0, 0.7);
+            background-blend-mode: overlay;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-200">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-16 bg-gray-900 p-4 flex flex-col items-center">
+            <i class="fas fa-bell text-2xl text-indigo-400 mb-6"></i>
+            <a href="/admin-home" class="text-gray-400 hover:text-indigo-400 transition duration-200" title="Back to Dashboard">
+                <i class="fas fa-arrow-left text-xl"></i>
+            </a>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <div class="max-w-2xl mx-auto">
+                <h2 class="text-3xl font-bold mb-8 text-indigo-300">Notifications</h2>
+                <div class="space-y-4">
+                    <!-- Notification 1 -->
+                    <div class="bg-gray-800 bg-opacity-80 rounded-lg p-4 flex items-center hover:bg-opacity-100 transition duration-200">
+                        <i class="fas fa-info-circle text-blue-400 text-lg mr-3"></i>
+                        <div class="flex-1">
+                            <p class="text-base font-semibold text-gray-100">System Update</p>
+                            <p class="text-sm text-gray-400">Version 2.1.4 deployed with new features.</p>
+                            <p class="text-xs text-gray-500 mt-1">1 hour ago</p>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-400 ml-4">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- Notification 2 -->
+                    <div class="bg-gray-800 bg-opacity-80 rounded-lg p-4 flex items-center hover:bg-opacity-100 transition duration-200">
+                        <i class="fas fa-exclamation-circle text-orange-400 text-lg mr-3"></i>
+                        <div class="flex-1">
+                            <p class="text-base font-semibold text-gray-100">Action Required</p>
+                            <p class="text-sm text-gray-400">New user registrations need approval.</p>
+                            <p class="text-xs text-gray-500 mt-1">Today at 9:30 AM</p>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-400 ml-4">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <!-- Notification 3 -->
+                    <div class="bg-gray-800 bg-opacity-80 rounded-lg p-4 flex items-center hover:bg-opacity-100 transition duration-200">
+                        <i class="fas fa-check-circle text-green-400 text-lg mr-3"></i>
+                        <div class="flex-1">
+                            <p class="text-base font-semibold text-gray-100">Task Completed</p>
+                            <p class="text-sm text-gray-400">Server maintenance finished successfully.</p>
+                            <p class="text-xs text-gray-500 mt-1">Yesterday at 5:15 PM</p>
+                        </div>
+                        <button class="text-gray-400 hover:text-red-400 ml-4">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- Clear All Button -->
+                <div class="mt-6 text-center">
+                    <button class="bg-indigo-500 text-white px-5 py-2 rounded-lg hover:bg-indigo-600 transition duration-200">
+                        Clear All
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

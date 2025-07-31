@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #4b5efc, #a855f7, #ec4899);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            color: #ffffff;
+        }
+
+        h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to right, #ffffff, #d4d4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p {
+            font-size: 18px;
+            color: #e5e7eb;
+            margin-bottom: 30px;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        .module-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 20px;
+        }
+
+        .cloud-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1), 
+                        inset 0 0 10px rgba(255, 255, 255, 0.5);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            text-decoration: none;
+            color: #1f2937;
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .cloud-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent);
+            opacity: 0.3;
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .cloud-card:hover::before {
+            transform: scale(1.2);
+        }
+
+        .cloud-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15), 
+                        inset 0 0 15px rgba(255, 255, 255, 0.7);
+        }
+
+        .cloud-card span {
+            font-size: 26px;
+            z-index: 1;
+        }
+
+        .cloud-card div {
+            z-index: 1;
+        }
+
+        .logout-btn {
+            display: inline-block;
+            margin-top: 40px;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+        }
+
+        .logout-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(239, 68, 68, 0.5);
+            background: linear-gradient(45deg, #dc2626, #b91c1c);
+        }
+
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cloud-card {
+                font-size: 16px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2>👋 Welcome {{ user }}!</h2>
+    <p>Your personalized dashboard awaits. Explore the cloud-inspired options below!</p>
+
+    <div class="module-grid">
+        <a href="/user/request-booking" class="cloud-card"><span>📅</span><div>Request Hall Booking</div></a>
+        <a href="/user/my-bookings" class="cloud-card"><span>📖</span><div>View My Bookings</div></a>
+        <a href="/user/feedback" class="cloud-card"><span>📝</span><div>Give Feedback</div></a>
+        <a href="/user/profile" class="cloud-card"><span>🙍‍♂️</span><div>Profile Settings</div></a>
+    </div>
+
+    <a href="/login" class="logout-btn">Logout</a>
+</body>
+</html>
